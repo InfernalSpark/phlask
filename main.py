@@ -10,11 +10,16 @@ def main():
 @app.route('/login', methods = ['POST', 'GET'])
 def login():
     return render_template("login.html")
+
+@app.route('/setcookie', methods = ['POST', 'GET'])
+def setcookie():
     form = request.form
     user = form['username']
     print("GOT IT")
     res = make_response()
     res.set_cookie('username', user)
+    return redirect(url_for('/'))
+
 
 if __name__ == '__main__':
     app.run(debug = True)
