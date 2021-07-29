@@ -2,9 +2,8 @@ from flask import Flask, render_template, redirect, url_for, request, make_respo
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/home')
 def main():
-    print("")
     return "WHAT NOW?"
 
 @app.route('/login', methods = ['POST', 'GET'])
@@ -18,7 +17,11 @@ def setcookie():
     print("GOT IT")
     res = make_response()
     res.set_cookie('username', user)
-    return redirect(url_for('/'))
+    return redirect(url_for('main'))
+
+@app.route('/new')
+def new():
+    return render_template("new.html")
 
 
 if __name__ == '__main__':
